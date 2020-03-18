@@ -153,4 +153,13 @@ describe('yup-phone validation', () => {
       .required();
     expect(phoneSchema.isValidSync('+65 6511 9266')).toBe(true);
   });
+
+  it('validates phon number with US (United States) region', () => {
+    const phoneSchema = Yup.string()
+      .phone('US')
+      .required();
+
+    expect(phoneSchema.isValidSync('+1 415 555 1234')).toBe(true);
+    expect(phoneSchema.isValidSync('4155551234')).toBe(true);
+  });
 });
